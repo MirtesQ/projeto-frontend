@@ -1,14 +1,7 @@
-
-
 import React, { useState } from 'react';
 import axios from 'axios';
 
-/**
- * @param {object} props - As propriedades do componente.
- * @param {function} props.onUsuarioCadastrado - Callback a ser chamada após o sucesso do cadastro.
- * @param {function} props.goToViewUsers - Função para navegar de volta à página de lista de usuários. <<<<< Nova prop
- */
-const FormularioUsuario = ({ onUsuarioCadastrado, goToViewUsers }) => { 
+const FormularioUsuario = ({ onUsuarioCadastrado, goToViewUsers }) => {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [mensagem, setMensagem] = useState(null);
@@ -29,7 +22,7 @@ const FormularioUsuario = ({ onUsuarioCadastrado, goToViewUsers }) => {
       setEmail('');
 
       if (onUsuarioCadastrado) {
-        onUsuarioCadastrado(); // Esta chamada vai fazer App.jsx redirecionar
+        onUsuarioCadastrado();
       }
 
     } catch (error) {
@@ -48,19 +41,28 @@ const FormularioUsuario = ({ onUsuarioCadastrado, goToViewUsers }) => {
 
   return (
     <div style={{
-      border: '1px solid #ddd',
-      borderRadius: '8px',
-      padding: '20px',
-      marginTop: '30px',
-      backgroundColor: '#fff',
-      boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
+      border: '1px solid #e9ecef',
+      borderRadius: '16px',
+      padding: '40px',
+      marginTop: '40px',
+      backgroundColor: '#ffffff',
+      boxShadow: '0 10px 20px rgba(0,0,0,0.1)'
     }}>
-      <h2 style={{ color: '#333', borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '20px' }}>
+      <h2 style={{
+        color: '#2c3e50',
+        borderBottom: '1px solid #f0f2f5',
+        paddingBottom: '20px',
+        marginBottom: '30px',
+        fontSize: '2.2em',
+        fontWeight: '600',
+        userSelect: 'none',
+        cursor: 'default'
+      }} contentEditable="false">
         Cadastrar Novo Usuário
       </h2>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
         <div>
-          <label htmlFor="nome" style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold', color: '#555' }}>Nome:</label>
+          <label htmlFor="nome" style={{ display: 'block', marginBottom: '10px', fontWeight: '600', color: '#495057', fontSize: '1.1em', userSelect: 'none', cursor: 'default' }} contentEditable="false">Nome:</label>
           <input
             type="text"
             id="nome"
@@ -69,15 +71,26 @@ const FormularioUsuario = ({ onUsuarioCadastrado, goToViewUsers }) => {
             required
             style={{
               width: '100%',
-              padding: '10px',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              boxSizing: 'border-box'
+              padding: '15px',
+              border: '1px solid #ced4da',
+              borderRadius: '8px',
+              boxSizing: 'border-box',
+              fontSize: '1em',
+              color: '#343a40',
+              transition: 'border-color 0.2s ease, box-shadow 0.2s ease'
+            }}
+            onFocus={(e) => {
+              e.currentTarget.style.borderColor = '#80bdff';
+              e.currentTarget.style.boxShadow = '0 0 0 0.2rem rgba(0,123,255,.25)';
+            }}
+            onBlur={(e) => {
+              e.currentTarget.style.borderColor = '#ced4da';
+              e.currentTarget.style.boxShadow = 'none';
             }}
           />
         </div>
         <div>
-          <label htmlFor="email" style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold', color: '#555' }}>Email:</label>
+          <label htmlFor="email" style={{ display: 'block', marginBottom: '10px', fontWeight: '600', color: '#495057', fontSize: '1.1em', userSelect: 'none', cursor: 'default' }} contentEditable="false">Email:</label>
           <input
             type="email"
             id="email"
@@ -86,47 +99,64 @@ const FormularioUsuario = ({ onUsuarioCadastrado, goToViewUsers }) => {
             required
             style={{
               width: '100%',
-              padding: '10px',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              boxSizing: 'border-box'
+              padding: '15px',
+              border: '1px solid #ced4da',
+              borderRadius: '8px',
+              boxSizing: 'border-box',
+              fontSize: '1em',
+              color: '#343a40',
+              transition: 'border-color 0.2s ease, box-shadow 0.2s ease'
+            }}
+            onFocus={(e) => {
+              e.currentTarget.style.borderColor = '#80bdff';
+              e.currentTarget.style.boxShadow = '0 0 0 0.2rem rgba(0,123,255,.25)';
+            }}
+            onBlur={(e) => {
+              e.currentTarget.style.borderColor = '#ced4da';
+              e.currentTarget.style.boxShadow = 'none';
             }}
           />
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px' }}> 
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px', marginTop: '15px' }}>
           <button
             type="submit"
             disabled={carregando}
             style={{
-              backgroundColor: carregando ? '#a0a0a0' : '#4CAF50',
+              backgroundColor: carregando ? '#90a4ae' : '#28a745',
               color: 'white',
-              padding: '12px 20px',
+              padding: '15px 30px',
               border: 'none',
-              borderRadius: '5px',
+              borderRadius: '10px',
               cursor: carregando ? 'not-allowed' : 'pointer',
-              fontSize: '16px',
-              fontWeight: 'bold',
-              flexGrow: 1, 
-              transition: 'background-color 0.3s ease'
+              fontSize: '1.15em',
+              fontWeight: '600',
+              flexGrow: 1,
+              boxShadow: '0 4px 8px rgba(0,0,0,0.15)',
+              transition: 'background-color 0.3s ease, transform 0.2s ease'
             }}
+            onMouseOver={(e) => { if (!carregando) e.currentTarget.style.backgroundColor = '#218838'; }}
+            onMouseOut={(e) => { if (!carregando) e.currentTarget.style.backgroundColor = '#28a745'; }}
           >
             {carregando ? 'Cadastrando...' : 'Cadastrar'}
           </button>
           <button
-            type="button" 
+            type="button"
             onClick={goToViewUsers}
             style={{
-              backgroundColor: '#6c757d', 
+              backgroundColor: '#6c757d',
               color: 'white',
-              padding: '12px 20px',
+              padding: '15px 30px',
               border: 'none',
-              borderRadius: '5px',
+              borderRadius: '10px',
               cursor: 'pointer',
-              fontSize: '16px',
-              fontWeight: 'bold',
-              flexGrow: 1, 
-              transition: 'background-color 0.3s ease'
+              fontSize: '1.15em',
+              fontWeight: '600',
+              flexGrow: 1,
+              boxShadow: '0 4px 8px rgba(0,0,0,0.15)',
+              transition: 'background-color 0.3s ease, transform 0.2s ease'
             }}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#5a6268'}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#6c757d'}
           >
             Voltar para Lista
           </button>
@@ -134,10 +164,10 @@ const FormularioUsuario = ({ onUsuarioCadastrado, goToViewUsers }) => {
       </form>
 
       {mensagem && (
-        <p style={{ color: 'green', marginTop: '15px', fontWeight: 'bold', textAlign: 'center' }}>{mensagem}</p>
+        <p style={{ color: '#28a745', marginTop: '25px', fontWeight: 'bold', textAlign: 'center', fontSize: '1.2em', userSelect: 'none', cursor: 'default' }} contentEditable="false">{mensagem}</p>
       )}
       {erro && (
-        <p style={{ color: 'red', marginTop: '15px', fontWeight: 'bold', textAlign: 'center' }}>{erro}</p>
+        <p style={{ color: '#dc3545', marginTop: '25px', fontWeight: 'bold', textAlign: 'center', fontSize: '1.2em', userSelect: 'none', cursor: 'default' }} contentEditable="false">{erro}</p>
       )}
     </div>
   );

@@ -1,88 +1,75 @@
+import React from 'react';
 
-
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-
-/**
- * @param {object} props - As propriedades do componente.
- * @param {function} props.goToViewUsers - Função para navegar para a página de lista de usuários.
- * @param {function} props.goToRegisterUser - Função para navegar para a página de cadastro de usuário.
- * @returns {JSX.Element} O elemento JSX que renderiza a mensagem de saudação e os botões.
- */
 const Saudacao = ({ goToViewUsers, goToRegisterUser }) => {
-  const [mensagemSaudacao, setMensagemSaudacao] = useState('Carregando saudação...');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchSaudacao = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/saudacao');
-        setMensagemSaudacao(response.data.mensagem);
-      } catch (err) {
-        setError('Erro ao carregar saudação da API.');
-        console.error('Erro ao buscar saudação:', err);
-        setMensagemSaudacao('Não foi possível carregar a mensagem de boas-vindas.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSaudacao();
-  }, []);
-
-  if (loading) {
-    return <p style={{ textAlign: 'center', fontSize: '1.2em', color: '#555' }}>Carregando mensagem de boas-vindas...</p>;
-  }
-
-  if (error) {
-    return <p style={{ color: 'red', textAlign: 'center', fontWeight: 'bold' }}>{error}</p>;
-  }
+  const mensagemSaudacao = "Bem-vindo à aplicação front-end";
 
   return (
-    <div style={{ textAlign: 'center', marginBottom: '20px', padding: '20px', border: '1px solid #e0e0e0', borderRadius: '10px', backgroundColor: '#fdfdfd', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
-      <h1 style={{ color: '#2c3e50', fontSize: '2.5em', marginBottom: '25px', textShadow: '1px 1px 2px rgba(0,0,0,0.1)' }}>
+    <div style={{
+      textAlign: 'center',
+      padding: '50px',
+      backgroundColor: '#ffffff',
+      borderRadius: '20px',
+      boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)',
+      marginBottom: '40px',
+      border: '1px solid #e0e0e0'
+    }}>
+      <h1 style={{
+        color: '#2c3e50',
+        fontSize: '3em', 
+        lineHeight: '1.2em', 
+        marginBottom: '40px',
+        fontWeight: '700',
+        textShadow: '2px 2px 4px rgba(0,0,0,0.05)',
+        userSelect: 'none',
+        cursor: 'default'
+      }} contentEditable="false">
         {mensagemSaudacao}
       </h1>
 
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
-        {/* Botão para ir para a lista de usuários */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '30px' }}>
         <button
           onClick={goToViewUsers}
           style={{
-            backgroundColor: '#27ae60',
+            backgroundColor: '#28a745',
             color: 'white',
-            padding: '12px 25px',
+            padding: '18px 35px',
             border: 'none',
-            borderRadius: '8px',
+            borderRadius: '12px',
             cursor: 'pointer',
-            fontSize: '1.1em',
-            fontWeight: 'bold',
-            boxShadow: '0 4px 6px rgba (0,0,0,0.1)',
-            transition: 'all 0.3s ease',
+            fontSize: '1.3em',
+            fontWeight: '600',
+            boxShadow: '0 6px 12px rgba(0,0,0,0.2)',
+            transition: 'background-color 0.3s ease, transform 0.2s ease',
             textTransform: 'uppercase',
-            letterSpacing: '0.5px'
+            letterSpacing: '1px',
+            flex: 1,
+            maxWidth: '220px'
           }}
+          onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#218838'}
+          onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#28a745'}
         >
           Ver Usuários
         </button>
-        {/* Botão para ir para o formulário de cadastro */}
         <button
           onClick={goToRegisterUser}
           style={{
-            backgroundColor: '#e67e22',
-            color: 'white',
-            padding: '12px 25px',
+            backgroundColor: '#ffc107',
+            color: '#343a40',
+            padding: '18px 35px',
             border: 'none',
-            borderRadius: '8px',
+            borderRadius: '12px',
             cursor: 'pointer',
-            fontSize: '1.1em',
-            fontWeight: 'bold',
-            boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-            transition: 'all 0.3s ease',
+            fontSize: '1.3em',
+            fontWeight: '600',
+            boxShadow: '0 6px 12px rgba(0,0,0,0.2)',
+            transition: 'background-color 0.3s ease, transform 0.2s ease',
             textTransform: 'uppercase',
-            letterSpacing: '0.5px'
+            letterSpacing: '1px',
+            flex: 1,
+            maxWidth: '220px'
           }}
+          onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#e0a800'}
+          onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#ffc107'}
         >
           Cadastrar Usuário
         </button>
