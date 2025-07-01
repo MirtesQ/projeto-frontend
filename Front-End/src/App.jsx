@@ -35,7 +35,7 @@ function App() {
   const handleUserAtualizado = () => {
     setEditingUser(null);
     setRefreshTrigger(prev => prev + 1);
-    setCurrentPage(PINA_LISTA_USUARIOS);
+    setCurrentPage(PAGINA_LISTA_USUARIOS);
   };
 
   const handleCancelEdit = () => {

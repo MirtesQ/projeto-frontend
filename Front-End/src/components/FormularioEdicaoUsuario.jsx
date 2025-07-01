@@ -181,4 +181,4 @@ const FormularioEdicaoUsuario = ({ usuario, onUsuarioAtualizado, onCancelEdit })
   );
 };
 
-export default FormularioUsuario;
+export default FormularioEdicaoUsuario;
